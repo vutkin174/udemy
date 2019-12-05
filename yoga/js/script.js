@@ -60,7 +60,7 @@ window.addEventListener('DOMContentLoaded', function () {
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
             seconds = timer.querySelector('.seconds'),
-        timeInterval = setInterval(updateClock, 1000);
+            timeInterval = setInterval(updateClock, 1000);
 
         function updateClock() {
             let t = getTimeRemaining(endtime);
@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function () {
             } else {
                 seconds.textContent = t.seconds;
             }
-           if (t.total <= 0) {
+            if (t.total <= 0) {
                 //clearInterval(timeInterval);
                 hours.textContent = '00';
                 minutes.textContent = '00';
@@ -94,20 +94,49 @@ window.addEventListener('DOMContentLoaded', function () {
     let more = document.querySelector('.more'),
         overlay = document.querySelector('.overlay'),
         close = document.querySelector('.popup-close');
-        
 
-   more.addEventListener('click', function() {
+
+    more.addEventListener('click', function () {
         overlay.style.display = 'block';
         this.classList.add('more-splash');
         document.body.style.overflow = 'hidden';
-    
+
     });
-    close.addEventListener('click', function() {
+    close.addEventListener('click', function () {
         overlay.style.display = 'none';
         more.classList.remove('more-splash');
         document.body.style.overflow = '';
     });
 
+    class Options {
+        constructor(height, width, bg, fontSize, textAlign, border) {
+            this.height = height;
+            this.width = width;
+            this.background = bg;
+            this.fontSize = fontSize;
+            this.textAlign = textAlign;
+            this.border = border;
+            
+
+        }
+        frishDiv(text) {
+            
+            let div = document.createElement('div');
+            div.textContent = text;
+            div.style.height = this.height + 'px';
+            div.style.width= this.width + '%';
+            div.style.background = this.background;
+            div.style.fontSize = this.fontSize + 'px';
+            div.style.textAlign = this.textAlign;
+            
+            document.body.append(div);
+            
+            }
+    }
+    
+const textOne = new Options(200, 100, 'green', 28, 'center');
+
+textOne.frishDiv('Всем привет!');
 
 
 });
